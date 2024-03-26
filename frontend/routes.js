@@ -1,4 +1,7 @@
-const routes = {
+export const routes = {
+    home: {
+        template: "./index.html",
+    },
     login: {
         template: "./templates/login.html",
     },
