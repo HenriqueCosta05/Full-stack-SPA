@@ -1,0 +1,35 @@
+<section>
+    <div class="container">
+    <div class="row">
+      <!-- Coluna do Formulário de Inserção -->
+      <div class="col-md-4">
+        <h2>Inserir Produto</h2>
+        <form action="http://localhost:8002/produtos/novo-produto" method="post">
+          <div class="form-group">
+            <label for="nomeProduto">Nome do Produto:</label>
+            <input type="text" class="form-control" id="nomeProduto" placeholder="Nome">
+          </div>
+          <div class="form-group">
+            <label for="precoProduto">Preço do Produto:</label>
+            <input type="text" class="form-control" id="precoProduto" placeholder="Preço">
+          </div>
+          <button type="submit" class="btn btn-primary">Inserir</button>
+        </form>
+      </div>
+
+      <!-- Coluna da Pesquisa de Produtos -->
+      <div class="col-md-4">
+        <h2>Pesquisar Produto</h2>
+        <form action="http://localhost:8002/produtos">
+            <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Pesquisar por nome do produto">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">Pesquisar</button>
+          </div>
+        </div>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+  </section>

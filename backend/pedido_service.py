@@ -25,7 +25,7 @@ async def criar_pedido(user_id: int, order_data: Order) -> dict:
         for user in data['users']:
             if user['id'] == user_id:
                 user_exists = True
-                user_username = user['username']  # Salva o nome de usuário
+                user_username = user['username']  
                 break
         
         if not user_exists:
@@ -47,3 +47,10 @@ async def criar_pedido(user_id: int, order_data: Order) -> dict:
         db.truncate()
         
     return {"message": "Pedido criado com sucesso", "order_id": new_order_id}
+
+@app.get("/pedidos")
+def listar_pedidos() -> dict:
+    with open('./db.json', 'r') as db:
+        data = json.load(db)
+        
+    return data['orders']

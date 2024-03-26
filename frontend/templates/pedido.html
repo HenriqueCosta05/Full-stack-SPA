@@ -1,0 +1,39 @@
+<section>
+<div class="container">
+<div class="row">
+  <!-- Coluna do Formulário de Pedido -->
+  <div class="col-md-4">
+    <h2>Fazer Pedido</h2>
+    <form action="http://localhost:8004/pedido/user_id/add" method="post" name="newPedidoForm">
+      <div class="form-group">
+        <label for="nomeProduto">Nome do Produto:</label>
+        <select id="nomeProduto" class="form-control" multiple name="products">
+          <option selected disabled>Escolha um ou mais produto(s)...</option>
+      </div>
+      <button type="submit" class="btn btn-primary">Fazer Pedido</button>
+    </form>
+  </div>
+
+  <!-- Coluna da Pesquisa de Pedidos -->
+  <div class="col-md-4">
+    <h2>Pesquisar Pedidos</h2>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Pesquisar por nome do produto..">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button">Pesquisar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Coluna do Conteúdo do Pedido -->
+  <div class="col-md-12 conteudo-pedido">
+    <h2>Conteúdo do Pedido</h2>
+    <div class="card">
+      <div class="card-body">
+        
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</section>
