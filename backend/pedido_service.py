@@ -1,8 +1,17 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 import json
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], 
+    allow_credentials=True,
+    allow_methods=["GET", "POST"],
+    allow_headers=["*"],
+)
 
 class Order(BaseModel):
    products: list
@@ -12,7 +21,6 @@ async def criar_pedido(user_id: int, order_data: Order) -> dict:
     with open('./db.json', 'r+') as db:
         data = json.load(db)
         
-        # Verifica se o usuário existe
         user_exists = False
         for user in data['users']:
             if user['id'] == user_id:
