@@ -7,9 +7,9 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], 
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["GET", "POST"],
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 
@@ -17,9 +17,9 @@ class User(BaseModel):
     username: str
     password: str
 
-@app.post("/register")
+@app.post("/cadastro")
 def register(user_data: dict) -> dict:
-    with open("./db.json", "r+") as db:
+    with open("../db.json", "r+") as db:
         data = json.load(db)
         for existing_user in data['users']: 
             if existing_user['username'] == user_data['username']:
@@ -35,7 +35,7 @@ def register(user_data: dict) -> dict:
 
 @app.post("/login")
 async def login(user: User):
-    with open("./db.json", "r+") as db:
+    with open("../db.json", "r+") as db:
         data = json.load(db)
         for db_user in data["users"]:
             if db_user["username"] == user.username and db_user["password"] == user.password:

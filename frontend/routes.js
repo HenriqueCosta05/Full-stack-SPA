@@ -11,7 +11,7 @@ export const routes = {
     carrinho: {
         template: "./templates/carrinho.html",
     },
-    pedido: {
+    pedidos: {
         template: "./templates/pedido.html",
     }, 
     produto: {

@@ -19,14 +19,14 @@ class Product(BaseModel):
 
 @app.get("/produtos")
 async def list_products() -> list[Product]:
-    with open('./db.json', 'r') as db:
+    with open('../db.json', 'r') as db:
         data = json.load(db)
         product_list = data['products']
         return product_list
 
 @app.post('/produtos/novo-produto')
 def create_product(product_data: dict) -> dict:
-    with open('./db.json', 'r+') as db:
+    with open('../db.json', 'r+') as db:
         data = json.load(db)
         for existing_product in data['products']: 
             if existing_product['nome'] == product_data['nome']:

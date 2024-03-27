@@ -18,7 +18,7 @@ class Order(BaseModel):
 
 @app.post("/pedido/{user_id}/add")
 async def criar_pedido(user_id: int, order_data: Order) -> dict:
-    with open('./db.json', 'r+') as db:
+    with open('../db.json', 'r+') as db:
         data = json.load(db)
         
         user_exists = False
@@ -50,7 +50,7 @@ async def criar_pedido(user_id: int, order_data: Order) -> dict:
 
 @app.get("/pedidos")
 def listar_pedidos() -> dict:
-    with open('./db.json', 'r') as db:
+    with open('../db.json', 'r') as db:
         data = json.load(db)
         
     return data['orders']

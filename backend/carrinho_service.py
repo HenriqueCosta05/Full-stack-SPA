@@ -26,7 +26,7 @@ async def add_item_carrinho(user_id: int, cart: Cart) -> Dict[str, Any]:
     produto_id = cart.produto_id
     quantidade = cart.quantidade
     # Verifica se o usuário existe
-    with open('./db.json', 'r') as db:
+    with open('../db.json', 'r') as db:
         data = json.load(db)
         user_exists = False
         for user in data['users']:
@@ -38,7 +38,7 @@ async def add_item_carrinho(user_id: int, cart: Cart) -> Dict[str, Any]:
             raise HTTPException(status_code=404, detail=f'Usuário não encontrado com o id: {user_id}')
     
     # Verifica se o produto existe e, caso exista, adiciona o produto ao carrinho
-    with open('./db.json', 'r+') as db:
+    with open('../db.json', 'r+') as db:
         data = json.load(db)
         for product in data['products']: 
             if product['id'] == produto_id:
@@ -61,7 +61,7 @@ async def add_item_carrinho(user_id: int, cart: Cart) -> Dict[str, Any]:
             user['cart'] = current_user['cart']
             break
 
-    with open('./db.json', 'w') as db:
+    with open('../db.json', 'w') as db:
         json.dump(data, db, indent=4)
 
     return current_user

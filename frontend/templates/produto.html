@@ -4,14 +4,14 @@
       <!-- Coluna do Formulário de Inserção -->
       <div class="col-md-4">
         <h2>Inserir Produto</h2>
-        <form action="http://localhost:8002/produtos/novo-produto" method="post">
+        <form action="http://localhost:8002/produtos/novo-produto" method="post" name="newProduto">
           <div class="form-group">
             <label for="nomeProduto">Nome do Produto:</label>
-            <input type="text" class="form-control" id="nomeProduto" placeholder="Nome">
+            <input type="text" class="form-control" id="nomeProduto" name="nome" placeholder="Nome">
           </div>
           <div class="form-group">
             <label for="precoProduto">Preço do Produto:</label>
-            <input type="text" class="form-control" id="precoProduto" placeholder="Preço">
+            <input type="text" class="form-control" id="precoProduto" name="preco" placeholder="Preço">
           </div>
           <button type="submit" class="btn btn-primary">Inserir</button>
         </form>
@@ -20,7 +20,7 @@
       <!-- Coluna da Pesquisa de Produtos -->
       <div class="col-md-4">
         <h2>Pesquisar Produto</h2>
-        <form action="http://localhost:8002/produtos">
+        <form action="http://localhost:8002/produtos" name="getProdutos">
             <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Pesquisar por nome do produto">
           <div class="input-group-append">
