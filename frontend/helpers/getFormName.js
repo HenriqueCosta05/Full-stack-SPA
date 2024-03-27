@@ -1,5 +1,11 @@
 export const getFormName = () => {
-    const form = document.querySelector('form');
-    const formName = form.getAttribute('name');
-    return formName;
+    window.onload = () => {
+        const form = document.querySelector('form');
+        if (form) {
+            const formName = form.getAttribute('name');
+            return formName;
+        } else {
+            console.error('Nenhum formulário encontrado');
+        }
+    }
 }

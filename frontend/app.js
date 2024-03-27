@@ -17,7 +17,11 @@ const locationHandler = async () => {
         if (getFormName() === 'getProdutos') {
             handleSubmit(location, "GET");
         }
-        handleSubmit(location, "POST");
+    handleSubmit(location, "POST");
+    
+    document.querySelectorAll('table').forEach(() => {
+        fillTablesWithInfo(`http://localhost:8002/produtos`);
+    });
     
 }
 

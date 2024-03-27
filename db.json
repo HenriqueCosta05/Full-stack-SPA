@@ -5,8 +5,25 @@
             "password": "1234",
             "id": 1,
             "cart": []
+        },
+        {
+            "username": "HenriqueCosta01",
+            "password": "1234",
+            "id": 2,
+            "cart": []
         }
     ],
-    "products": [],
+    "products": [
+        {
+            "nome": "Algoritmos",
+            "preco": "12",
+            "id": 1
+        },
+        {
+            "nome": "Banco de dados",
+            "preco": "12",
+            "id": 2
+        }
+    ],
     "orders": []
 }
