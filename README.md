@@ -7,3 +7,8 @@ Trata-se de uma simples SPA (Single Page Application), escrita em Python no back
 * Validação do CORS (Cross Origin Resource Sharing) entre diferentes páginas web.
 * Inserção de itens em bancos de dados não-relacionais.
 * Rotas e manipulação de rotas via Javascript DOM.
+
+## O que falta?
+* Integração entre sistemas front-end e back-end.
+
+
