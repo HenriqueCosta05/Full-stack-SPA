@@ -1,47 +1,38 @@
 <section id="content">
-<div class="container">
-<div class="row">
-  <!-- Coluna do Formulário de Pedido -->
-  <div class="col-md-4">
-    <h2>Fazer Pedido</h2>
-    <form action="http://localhost:8004/pedido/user_id/add" method="post" name="newPedidoForm">
-      <div class="form-group">
-        <label for="nomeProduto">Nome do Produto:</label>
-        <select id="nomeProduto" class="form-control" multiple name="products">
-          <option selected disabled>Escolha um ou mais produto(s)...</option>
+  <div class="container">
+    <div class="row">
+      <!-- Coluna do Formulário de Pedido -->
+      <div class="col-md-4">
+        <h2>Fazer Pedido</h2>
+        <form action="http://localhost:8004/pedido/user_id/add" method="post" name="newPedidoForm">
+          <div class="form-group">
+            <label for="nomeProduto">Nome do Produto:</label>
+            <select id="nomeProduto" class="form-control" multiple name="products">
+              <option selected disabled>Escolha um ou mais produto(s)...</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Adicionar ao Pedido</button>
+        </form>
       </div>
-      <button type="submit" class="btn btn-primary">Fazer Pedido</button>
-    </form>
-  </div>
 
-  <!-- Coluna da Pesquisa de Pedidos -->
-  <div class="col-md-4">
-    <h2>Pedidos</h2>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col"># Pedido</th>
-          <th scope="col">Nome do Produto</th>
-          <th scope="col">Preço Unitário</th>
-          <th scope="col">Quantidade</th>
-          <th scope="col">Preço Total</th>
-        </tr>
-      </thead>
-      <tbody id="cart-items">
-        
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Coluna do Conteúdo do Pedido -->
-  <div class="col-md-12 conteudo-pedido">
-    <h2>Conteúdo do Pedido</h2>
-    <div class="card">
-      <div class="card-body">
-        
+      <!-- Coluna da Pesquisa de Pedidos -->
+      <div class="col-md-8">
+        <h2>Pedidos</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col"># Pedido</th>
+              <th scope="col">Nome do Produto</th>
+              <th scope="col">Preço Unitário</th>
+              <th scope="col">Quantidade</th>
+              <th scope="col">Preço Total</th>
+            </tr>
+          </thead>
+          <tbody id="cart-items">
+            <!-- Os pedidos serão adicionados aqui dinamicamente -->
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-</div>
-</div>
 </section>

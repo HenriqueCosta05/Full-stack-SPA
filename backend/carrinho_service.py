@@ -65,3 +65,12 @@ async def add_item_carrinho(user_id: int, cart: Cart) -> Dict[str, Any]:
         json.dump(data, db, indent=4)
 
     return current_user
+
+@app.get("/carrinhos/{user_id}")
+async def getCartItems(user_id):
+    with open('../db.json', 'r') as db:
+        data = json.load(db)
+        for item in data['users']: 
+            cart = item['cart']
+            return cart
+        

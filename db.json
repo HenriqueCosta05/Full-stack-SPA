@@ -11,6 +11,12 @@
             "password": "1234",
             "id": 2,
             "cart": []
+        },
+        {
+            "username": "Hbc",
+            "password": "123",
+            "id": 3,
+            "cart": []
         }
     ],
     "products": [

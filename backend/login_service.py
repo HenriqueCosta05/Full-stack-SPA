@@ -17,7 +17,7 @@ class User(BaseModel):
     username: str
     password: str
 
-@app.post("/cadastro")
+@app.post("/register")
 def register(user_data: dict) -> dict:
     with open("../db.json", "r+") as db:
         data = json.load(db)

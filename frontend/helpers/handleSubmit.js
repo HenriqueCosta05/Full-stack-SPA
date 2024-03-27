@@ -7,6 +7,7 @@ export const handleSubmit = (location, method) => {
         formData.forEach((value, key) => {
             if (value !== "submit") {
                 data[key] = value;
+                console.log(data)
             }
         });
         const json = JSON.stringify(data);
@@ -16,8 +17,8 @@ export const handleSubmit = (location, method) => {
             case 'login':
                 url = `http://localhost:8001/login`;
                 break;
-            case 'cadastro':
-                url = `http://localhost:8001/cadastro`;
+            case 'register':
+                url = `http://localhost:8001/register`;
                 method = "POST";
                 break;
             case 'produto':
