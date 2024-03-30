@@ -48,9 +48,11 @@ async def criar_pedido(user_id: int, order_data: Order) -> dict:
         
     return {"message": "Pedido criado com sucesso", "order_id": new_order_id}
 
-@app.get("/pedidos")
-def listar_pedidos() -> dict:
+@app.get("/pedidos/{user_id}")
+def listar_pedidos(user_id: int) -> dict:
     with open('../db.json', 'r') as db:
         data = json.load(db)
-        
-    return data['orders']
+        for user in data['users']:
+            if user['id'] == user_id:
+                return {"orders": [order for order in data['orders'] if order['user_associated'] == user['username']]}
+        raise HTTPException(status_code=404, detail="Usuário não encontrado")

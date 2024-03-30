@@ -1,8 +1,6 @@
 import { routes } from "./routes.js";
-import { handleFormAction } from "./helpers/handleFormAction.js";
-import { handleSubmit } from "./helpers/handleSubmit.js";
-import { fillTablesWithInfo } from "./helpers/fillTablesWithInfo.js";
-import { fillSelectWithInfo } from "./helpers/fillSelectWithInfo.js";
+import { handleFormAction, handleFormSubmit } from "./helpers/handleForm.js";
+import { fillTablesWithInfo, fillSelectWithInfo } from "./helpers/fillWithInfo.js";
 
 const locationHandler = async () => {
     let location = window.location.hash.replace('#', '');
@@ -16,23 +14,35 @@ const locationHandler = async () => {
     const response = await fetch(route.template).then((response) => response.text());
     document.getElementById('app').innerHTML = response;
 
-    if (location === "login" || location == "register") handleSubmit(location, "POST");
-    
     document.querySelectorAll('form').forEach((form) => {
-        form.action = handleFormAction(userId, route.port);
-    });
-    document.querySelectorAll('table').forEach(() => {
-        if (userId !== undefined || userId !== null){
-            fillTablesWithInfo(`http://localhost:8002/produtos`);
-            fillTablesWithInfo(`http://localhost:8003/carrinho/${userId}`)
-            fillTablesWithInfo(`http://localhost:8004/pedidos`)
-        }
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            const url = await handleFormAction(form.method, route.port - 8000, data);
+            handleFormSubmit(form, url);
+        });
     });
 
-    document.querySelectorAll('select').forEach(() => {
-        fillSelectWithInfo(`http://localhost:8002/produtos`)
-    })
-    
+    document.querySelectorAll('select').forEach((select) => {
+        fillSelectWithInfo('http://localhost:8002/produtos').then((response) => {
+            response.forEach((produto) => {
+                const option = document.createElement('option');
+                option.value = produto.id;
+                option.text = produto.nome;
+                select.appendChild(option);
+            });
+        })
+    });
+
+    document.getElementById('btn-consulta').addEventListener('click', function () {
+        this.addEventListener('click', async (event) => {
+            event.preventDefault();
+            const url = 'http://localhost:8002/produtos';
+            const table = await fillTablesWithInfo(url);
+            return table;
+        });
+    });
 }
 
 window.addEventListener('hashchange', locationHandler);

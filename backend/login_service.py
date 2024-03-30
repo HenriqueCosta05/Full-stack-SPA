@@ -5,12 +5,9 @@ import json
 
 app = FastAPI()
 
-origins = [
-    "http://localhost:8080",
-]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -22,7 +19,7 @@ class User(BaseModel):
 
 @app.post("/register")
 def register(user_data: dict) -> dict:
-    with open("../db.json", "r") as db:
+    with open("../db.json", "r+") as db:
         data = json.load(db)
     for existing_user in data['users']: 
         if existing_user['username'] == user_data['username']:
