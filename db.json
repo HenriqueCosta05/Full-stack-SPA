@@ -11,6 +11,12 @@
             "password": "1234",
             "id": 2,
             "cart": []
+        },
+        {
+            "username": "HenriqueCosta052",
+            "password": "1234",
+            "id": 3,
+            "cart": []
         }
     ],
     "products": [
@@ -48,15 +54,38 @@
             "nome": "Produto 5",
             "preco": "20.00",
             "id": 7
+        },
+        {
+            "nome": "Produto 10",
+            "preco": "12",
+            "id": 8
         }
     ],
     "orders": [
         {
             "id": 1,
-            "products": [
-                "Chocolate",
-                "Banana"
-            ],
+            "products": {
+                "Produto 1": 12
+            },
+            "user_associated": "HenriqueCosta05"
+        },
+        {
+            "id": 2,
+            "products": {
+                "Produto 1": 12,
+                "Produto 2": 13,
+                "Produto 3": 14
+            },
+            "user_associated": "HenriqueCosta05"
+        },
+        {
+            "id": 3,
+            "products": {
+                "Banco de dados": 12,
+                "Produto 1": 13,
+                "Produto 2": 14,
+                "Produto 3": 14
+            },
             "user_associated": "HenriqueCosta05"
         }
     ]

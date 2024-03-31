@@ -9,6 +9,6 @@ Trata-se de uma simples SPA (Single Page Application), escrita em Python no back
 * Rotas e manipulação de rotas via Javascript DOM.
 
 ## O que falta?
-* Integração entre sistemas front-end e back-end.
+* (Iniciado, mas não finalizado) Integração entre sistemas front-end e back-end.
 
 

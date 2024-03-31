@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from typing import Dict
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 import json
@@ -9,12 +10,12 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"], 
     allow_credentials=True,
-    allow_methods=["GET", "POST"],
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 
 class Order(BaseModel):
-   products: list
+    products: Dict[str, int]
 
 @app.post("/pedido/{user_id}/add")
 async def criar_pedido(user_id: int, order_data: Order) -> dict:
@@ -37,7 +38,7 @@ async def criar_pedido(user_id: int, order_data: Order) -> dict:
         order_dict = {
             "id": new_order_id,
             "products": order_data.products,
-            "user_associated": user_username 
+            "user_associated": user_username,
         }
         
         data['orders'].append(order_dict)

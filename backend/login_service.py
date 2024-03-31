@@ -18,19 +18,20 @@ class User(BaseModel):
     password: str
 
 @app.post("/register")
-def register(user_data: dict) -> dict:
+def register(user: User) -> dict:
     with open("../db.json", "r+") as db:
         data = json.load(db)
     for existing_user in data['users']: 
-        if existing_user['username'] == user_data['username']:
+        if existing_user['username'] == user.username:
             return {"message": "O usuário já existe!"}
     new_user_id = len(data['users']) + 1
+    user_data = user.dict()
     user_data['id'] = new_user_id
     user_data['cart'] = []
     data['users'].append(user_data)
     with open("../db.json", "w") as db:
         json.dump(data, db, indent=4)
-    return user_data['id']
+    return {"id": user_data['id']}
 
 @app.post("/login")
 async def login(user: User):

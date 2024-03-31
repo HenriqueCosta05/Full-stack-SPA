@@ -1,9 +1,10 @@
 import { routes } from "./routes.js";
-import { handleFormAction, handleFormSubmit } from "./helpers/handleForm.js";
-import { fillTablesWithInfo, fillSelectWithInfo } from "./helpers/fillWithInfo.js";
+import { handleFormSubmit } from "./helpers/handleForm.js";
+import { fillTablesWithInfo, completeForm } from "./helpers/fillWithInfo.js";
 
 const locationHandler = async () => {
     let location = window.location.hash.replace('#', '');
+    let username = localStorage.getItem('username');
     let userId = localStorage.getItem('userId');
     //Verifica se há alguma rota já exibida em tela:
     if (location === '') {
@@ -14,35 +15,48 @@ const locationHandler = async () => {
     const response = await fetch(route.template).then((response) => response.text());
     document.getElementById('app').innerHTML = response;
 
-    document.querySelectorAll('form').forEach((form) => {
-        form.addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
-            const url = await handleFormAction(form.method, route.port - 8000, data);
-            handleFormSubmit(form, url);
-        });
-    });
 
-    document.querySelectorAll('select').forEach((select) => {
-        fillSelectWithInfo('http://localhost:8002/produtos').then((response) => {
-            response.forEach((produto) => {
-                const option = document.createElement('option');
-                option.value = produto.id;
-                option.text = produto.nome;
-                select.appendChild(option);
+    async function handleElements(selector, method, url) {
+        const element = document.querySelector(selector);
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (element.tagName === 'FORM') {
+            element.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                const formData = new FormData(event.target);
+                const data = Object.fromEntries(formData.entries());
+                await handleFormSubmit(method, url, data);
             });
-        })
-    });
 
-    document.getElementById('btn-consulta').addEventListener('click', function () {
-        this.addEventListener('click', async (event) => {
-            event.preventDefault();
-            const url = 'http://localhost:8002/produtos';
-            const table = await fillTablesWithInfo(url);
-            return table;
-        });
-    });
+        } else if (element.tagName === 'SELECT') {
+            data.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item.id;
+                option.text = item.nome;
+                element.appendChild(option);
+            });
+        } else if (element.tagName === 'BUTTON') {
+            element.addEventListener('click', async () => {
+                const tableInfo = await fillTablesWithInfo(url);
+                const table = document.createElement('table');
+                table.appendChild(tableInfo);
+            });
+        }
+    }
+
+    // Uso dos métodos handleElements para manipular elementos do DOM de acordo com a rota acessada:
+    handleElements('#form-register', 'POST', 'http://localhost:8001/register');
+    handleElements('#form-login', 'POST', 'http://localhost:8001/login');
+    handleElements('select', 'GET', 'http://localhost:8002/produtos');
+    
+    //Caso específico
+        const proximoButton = document.getElementById('proximo');
+        if (proximoButton) {
+            completeForm()
+        }
+
+    
 }
 
 window.addEventListener('hashchange', locationHandler);
