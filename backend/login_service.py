@@ -27,7 +27,6 @@ def register(user: User) -> dict:
     new_user_id = len(data['users']) + 1
     user_data = user.dict()
     user_data['id'] = new_user_id
-    user_data['cart'] = []
     data['users'].append(user_data)
     with open("../db.json", "w") as db:
         json.dump(data, db, indent=4)

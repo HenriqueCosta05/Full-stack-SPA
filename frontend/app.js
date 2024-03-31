@@ -17,7 +17,7 @@ const locationHandler = async () => {
 
 
     async function handleElements(selector, method, url) {
-        const element = document.querySelector(selector);
+        const element = document.getElementById(selector);
         const response = await fetch(url);
         const data = await response.json();
 
@@ -45,11 +45,15 @@ const locationHandler = async () => {
         }
     }
 
-    // Uso dos métodos handleElements para manipular elementos do DOM de acordo com a rota acessada:
-    handleElements('#form-register', 'POST', 'http://localhost:8001/register');
-    handleElements('#form-login', 'POST', 'http://localhost:8001/login');
-    handleElements('select', 'GET', 'http://localhost:8002/produtos');
+    // Uso dos métodos handleElements para requisições GET:
+    document.addEventListener("DOMContentLoaded", handleElements('form-select', 'GET', 'http://localhost:8002/produtos'));    
+    document.addEventListener("click", handleElements('btn-consulta', 'GET', 'http://localhost:8002/produtos'));
     
+    //Uso do método handleElements para requisições POST:
+    document.addEventListener("submit", handleElements('productForm', 'POST', 'http://localhost:8002/produtos/novo-produto'));
+    document.addEventListener("submit", handleElements('form-register', 'POST', 'http://localhost:8001/register'));
+    document.addEventListener("submit", handleElements('form-login', 'POST', 'http://localhost:8001/login'));
+
     //Caso específico
         const proximoButton = document.getElementById('proximo');
         if (proximoButton) {
