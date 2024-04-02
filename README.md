@@ -73,3 +73,4 @@ npx live-server //Aqui, poderá ser requerido instalar o live-server, caso seja 
 ## Ideias futuras de aprimoramento do projeto
 * Validação de formulários
 * Tratamento de exceções
+* CRUD para cada uma das páginas
